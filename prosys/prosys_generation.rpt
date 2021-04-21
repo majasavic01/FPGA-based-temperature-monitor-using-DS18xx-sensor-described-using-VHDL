@@ -1,0 +1,29 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\Users\maja\Desktop\Test_10_2_2020\prosys.qsys --block-symbol-file --output-directory=C:\Users\maja\Desktop\Test_10_2_2020\prosys --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading Test_10_2_2020/prosys.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 16.1]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Warning: prosys.clk_0: The input clock frequency must be known or set by the parent if this is a subsystem.
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\maja\Desktop\Test_10_2_2020\prosys.qsys --synthesis=VHDL --output-directory=C:\Users\maja\Desktop\Test_10_2_2020\prosys\synthesis --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading Test_10_2_2020/prosys.qsys
+Progress: Reading input file
+Progress: Adding clk_0 [clock_source 16.1]
+Progress: Parameterizing module clk_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Warning: prosys.clk_0: The input clock frequency must be known or set by the parent if this is a subsystem.
+Info: prosys: Generating prosys "prosys" for QUARTUS_SYNTH
+Info: prosys: Done "prosys" with 1 modules, 1 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

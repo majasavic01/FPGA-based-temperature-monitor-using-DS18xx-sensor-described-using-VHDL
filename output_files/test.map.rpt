@@ -1,0 +1,702 @@
+Analysis & Synthesis report for test
+Fri Feb 19 12:17:15 2021
+Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |TEST|WIRE_1_MASTER:U5|CRC:U3|crc_state
+  9. State Machine - |TEST|WIRE_1_MASTER:U5|DS18xx:U1|state
+ 10. State Machine - |TEST|configuration_fsm:U7|state_out
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u6"
+ 17. Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u5"
+ 18. Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u4"
+ 19. Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u3"
+ 20. Port Connectivity Checks: "data_conv:U4|bcd_decoder:u6"
+ 21. Port Connectivity Checks: "data_conv:U4|bcd_decoder:u5"
+ 22. Port Connectivity Checks: "WIRE_1_MASTER:U5|CRC:U3"
+ 23. Port Connectivity Checks: "WIRE_1_MASTER:U5|DS18xx:U1"
+ 24. Port Connectivity Checks: "reset_module:U6"
+ 25. Post-Synthesis Netlist Statistics for Top Partition
+ 26. Elapsed Time Per Partition
+ 27. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2016  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Fri Feb 19 12:17:15 2021       ;
+; Quartus Prime Version           ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
+; Revision Name                   ; test                                        ;
+; Top-level Entity Name           ; TEST                                        ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 436                                         ;
+; Total pins                      ; 52                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; test               ; test               ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; OpenCore Plus hardware evaluation                                               ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; PowerPlay Power Optimization During Synthesis                                   ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                     ;
++----------------------------------+-----------------+-----------------------+-------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type             ; File Name with Absolute Path                                                        ; Library ;
++----------------------------------+-----------------+-----------------------+-------------------------------------------------------------------------------------+---------+
+; WIRE_1_MASTER.vhd                ; yes             ; User VHDL File        ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/WIRE_1_MASTER.vhd     ;         ;
+; test.vhd                         ; yes             ; User VHDL File        ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd              ;         ;
+; on_off_ds18xx.vhd                ; yes             ; User VHDL File        ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/on_off_ds18xx.vhd     ;         ;
+; config_7s.vhd                    ; yes             ; User VHDL File        ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/config_7s.vhd         ;         ;
+; doublee_dabble.vhd               ; yes             ; User VHDL File        ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/doublee_dabble.vhd    ;         ;
+; bcd7_decoder.vhd                 ; yes             ; User VHDL File        ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/bcd7_decoder.vhd      ;         ;
+; reset_module.vhd                 ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/reset_module.vhd      ;         ;
+; divider1hz.vhd                   ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/divider1hz.vhd        ;         ;
+; configuration_fsm.vhd            ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd ;         ;
+; ds18xx.vhd                       ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/ds18xx.vhd            ;         ;
+; divider1mhz.vhd                  ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/divider1mhz.vhd       ;         ;
+; crc.vhd                          ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/crc.vhd               ;         ;
+; data_conv.vhd                    ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/data_conv.vhd         ;         ;
+; double_dabble.vhd                ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/double_dabble.vhd     ;         ;
+; bcd_decoder.vhd                  ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/bcd_decoder.vhd       ;         ;
+; mux.vhd                          ; yes             ; Auto-Found VHDL File  ; C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/mux.vhd               ;         ;
++----------------------------------+-----------------+-----------------------+-------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimate of Logic utilization (ALMs needed) ; 524            ;
+;                                             ;                ;
+; Combinational ALUT usage for logic          ; 908            ;
+;     -- 7 input functions                    ; 20             ;
+;     -- 6 input functions                    ; 116            ;
+;     -- 5 input functions                    ; 205            ;
+;     -- 4 input functions                    ; 169            ;
+;     -- <=3 input functions                  ; 398            ;
+;                                             ;                ;
+; Dedicated logic registers                   ; 436            ;
+;                                             ;                ;
+; I/O pins                                    ; 52             ;
+;                                             ;                ;
+; Total DSP Blocks                            ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 436            ;
+; Total fan-out                               ; 4729           ;
+; Average fan-out                             ; 3.26           ;
++---------------------------------------------+----------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                            ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+-------------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Entity Name       ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+-------------------+--------------+
+; |TEST                      ; 908 (0)             ; 436 (0)                   ; 0                 ; 0          ; 52   ; 0            ; |TEST                                 ; TEST              ; work         ;
+;    |WIRE_1_MASTER:U5|      ; 474 (0)             ; 267 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |TEST|WIRE_1_MASTER:U5                ; WIRE_1_MASTER     ; work         ;
+;       |CRC:U3|             ; 85 (85)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |TEST|WIRE_1_MASTER:U5|CRC:U3         ; CRC               ; work         ;
+;       |DS18xx:U1|          ; 381 (381)           ; 227 (227)                 ; 0                 ; 0          ; 0    ; 0            ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1      ; DS18xx            ; work         ;
+;       |divider1MHz:U2|     ; 8 (8)               ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|WIRE_1_MASTER:U5|divider1MHz:U2 ; divider1MHz       ; work         ;
+;    |config_7s:U10|         ; 25 (15)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|config_7s:U10                   ; config_7s         ; work         ;
+;       |bcd7_decoder:u1|    ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|config_7s:U10|bcd7_decoder:u1   ; bcd7_decoder      ; work         ;
+;       |bcd7_decoder:u2|    ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|config_7s:U10|bcd7_decoder:u2   ; bcd7_decoder      ; work         ;
+;       |doublee_dabble:d3|  ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|config_7s:U10|doublee_dabble:d3 ; doublee_dabble    ; work         ;
+;    |configuration_fsm:U7|  ; 165 (165)           ; 86 (86)                   ; 0                 ; 0          ; 0    ; 0            ; |TEST|configuration_fsm:U7            ; configuration_fsm ; work         ;
+;    |data_conv:U4|          ; 58 (25)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|data_conv:U4                    ; data_conv         ; work         ;
+;       |bcd_decoder:u1|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|data_conv:U4|bcd_decoder:u1     ; bcd_decoder       ; work         ;
+;       |bcd_decoder:u2|     ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|data_conv:U4|bcd_decoder:u2     ; bcd_decoder       ; work         ;
+;       |bcd_decoder:u3|     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|data_conv:U4|bcd_decoder:u3     ; bcd_decoder       ; work         ;
+;       |bcd_decoder:u4|     ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|data_conv:U4|bcd_decoder:u4     ; bcd_decoder       ; work         ;
+;       |double_dabble:d3|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|data_conv:U4|double_dabble:d3   ; double_dabble     ; work         ;
+;    |mux:U9|                ; 17 (17)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |TEST|mux:U9                          ; mux               ; work         ;
+;    |on_off_ds18xx:U8|      ; 130 (98)            ; 50 (23)                   ; 0                 ; 0          ; 0    ; 0            ; |TEST|on_off_ds18xx:U8                ; on_off_ds18xx     ; work         ;
+;       |divider1Hz:U2|      ; 32 (32)             ; 27 (27)                   ; 0                 ; 0          ; 0    ; 0            ; |TEST|on_off_ds18xx:U8|divider1Hz:U2  ; divider1Hz        ; work         ;
+;    |reset_module:U6|       ; 39 (39)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |TEST|reset_module:U6                 ; reset_module      ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------+-------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------+
+; State Machine - |TEST|WIRE_1_MASTER:U5|CRC:U3|crc_state                         ;
++---------------------+---------------------+--------------------+----------------+
+; Name                ; crc_state.CRC_CHECK ; crc_state.CRC_CALC ; crc_state.IDLE ;
++---------------------+---------------------+--------------------+----------------+
+; crc_state.IDLE      ; 0                   ; 0                  ; 0              ;
+; crc_state.CRC_CALC  ; 0                   ; 1                  ; 1              ;
+; crc_state.CRC_CHECK ; 1                   ; 0                  ; 1              ;
++---------------------+---------------------+--------------------+----------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |TEST|WIRE_1_MASTER:U5|DS18xx:U1|state                                                                                                                                                                                                                                                       ;
++-------------------------------+------------------------------+-------------------------------+--------------------------+----------------+----------------+------------------+-----------------+------------------+------------+----------------+----------------------------+-------------------------------+
+; Name                          ; state.WRITE_LOW_TH_TL_CONFIG ; state.WRITE_HIGH_TH_TL_CONFIG ; state.WRITE_TH_TL_CONFIG ; state.READ_BIT ; state.GET_DATA ; state.WRITE_HIGH ; state.WRITE_LOW ; state.WRITE_BYTE ; state.SEND ; state.PRESENCE ; state.WAIT_CONVERSION_TIME ; state.INITIALIZATION_SEQUENCE ;
++-------------------------------+------------------------------+-------------------------------+--------------------------+----------------+----------------+------------------+-----------------+------------------+------------+----------------+----------------------------+-------------------------------+
+; state.INITIALIZATION_SEQUENCE ; 0                            ; 0                             ; 0                        ; 0              ; 0              ; 0                ; 0               ; 0                ; 0          ; 0              ; 0                          ; 0                             ;
+; state.WAIT_CONVERSION_TIME    ; 0                            ; 0                             ; 0                        ; 0              ; 0              ; 0                ; 0               ; 0                ; 0          ; 0              ; 1                          ; 1                             ;
+; state.PRESENCE                ; 0                            ; 0                             ; 0                        ; 0              ; 0              ; 0                ; 0               ; 0                ; 0          ; 1              ; 0                          ; 1                             ;
+; state.SEND                    ; 0                            ; 0                             ; 0                        ; 0              ; 0              ; 0                ; 0               ; 0                ; 1          ; 0              ; 0                          ; 1                             ;
+; state.WRITE_BYTE              ; 0                            ; 0                             ; 0                        ; 0              ; 0              ; 0                ; 0               ; 1                ; 0          ; 0              ; 0                          ; 1                             ;
+; state.WRITE_LOW               ; 0                            ; 0                             ; 0                        ; 0              ; 0              ; 0                ; 1               ; 0                ; 0          ; 0              ; 0                          ; 1                             ;
+; state.WRITE_HIGH              ; 0                            ; 0                             ; 0                        ; 0              ; 0              ; 1                ; 0               ; 0                ; 0          ; 0              ; 0                          ; 1                             ;
+; state.GET_DATA                ; 0                            ; 0                             ; 0                        ; 0              ; 1              ; 0                ; 0               ; 0                ; 0          ; 0              ; 0                          ; 1                             ;
+; state.READ_BIT                ; 0                            ; 0                             ; 0                        ; 1              ; 0              ; 0                ; 0               ; 0                ; 0          ; 0              ; 0                          ; 1                             ;
+; state.WRITE_TH_TL_CONFIG      ; 0                            ; 0                             ; 1                        ; 0              ; 0              ; 0                ; 0               ; 0                ; 0          ; 0              ; 0                          ; 1                             ;
+; state.WRITE_HIGH_TH_TL_CONFIG ; 0                            ; 1                             ; 0                        ; 0              ; 0              ; 0                ; 0               ; 0                ; 0          ; 0              ; 0                          ; 1                             ;
+; state.WRITE_LOW_TH_TL_CONFIG  ; 1                            ; 0                             ; 0                        ; 0              ; 0              ; 0                ; 0               ; 0                ; 0          ; 0              ; 0                          ; 1                             ;
++-------------------------------+------------------------------+-------------------------------+--------------------------+----------------+----------------+------------------+-----------------+------------------+------------+----------------+----------------------------+-------------------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------+
+; State Machine - |TEST|configuration_fsm:U7|state_out                                                  ;
++----------------------+----------------------+---------------------+------------------+----------------+
+; Name                 ; state_out.prec_setup ; state_out.int_setup ; state_out.config ; state_out.idle ;
++----------------------+----------------------+---------------------+------------------+----------------+
+; state_out.idle       ; 0                    ; 0                   ; 0                ; 0              ;
+; state_out.config     ; 0                    ; 0                   ; 1                ; 1              ;
+; state_out.int_setup  ; 0                    ; 1                   ; 0                ; 1              ;
+; state_out.prec_setup ; 1                    ; 0                   ; 0                ; 1              ;
++----------------------+----------------------+---------------------+------------------+----------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                     ;
++----------------------------------------------------------+-------------------------------------------------------------+
+; Register name                                            ; Reason for Removal                                          ;
++----------------------------------------------------------+-------------------------------------------------------------+
+; on_off_ds18xx:U8|measure_period_int[7..30]               ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|insert_in_sensor[7..15]       ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|insert_in_sensor[3..6]        ; Stuck at VCC due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|insert_in_sensor[0..2]        ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|insert_in_sensor[16..20]      ; Stuck at VCC due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|insert_in_sensor[23]          ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|CRC:U3|dataOut[11..14]                  ; Lost fanout                                                 ;
+; on_off_ds18xx:U8|POWER_PIN                               ; Merged with on_off_ds18xx:U8|power                          ;
+; WIRE_1_MASTER:U5|DS18xx:U1|is_copy_to_EPROM[1..9,11..31] ; Merged with WIRE_1_MASTER:U5|DS18xx:U1|is_copy_to_EPROM[10] ;
+; WIRE_1_MASTER:U5|DS18xx:U1|is_th_tl_config[1..9,11..31]  ; Merged with WIRE_1_MASTER:U5|DS18xx:U1|is_th_tl_config[10]  ;
+; WIRE_1_MASTER:U5|DS18xx:U1|write_command[5]              ; Merged with WIRE_1_MASTER:U5|DS18xx:U1|write_command[4]     ;
+; reset_module:U6|ed_button_b[1]                           ; Merged with configuration_fsm:U7|ed_down_mode[1]            ;
+; reset_module:U6|ed_button_b[0]                           ; Merged with configuration_fsm:U7|ed_down_mode[0]            ;
+; reset_module:U6|ed_button_c[1]                           ; Merged with configuration_fsm:U7|ed_set[1]                  ;
+; reset_module:U6|ed_button_c[0]                           ; Merged with configuration_fsm:U7|ed_set[0]                  ;
+; reset_module:U6|ed_button_a[1]                           ; Merged with configuration_fsm:U7|ed_up_next[1]              ;
+; reset_module:U6|ed_button_a[0]                           ; Merged with configuration_fsm:U7|ed_up_next[0]              ;
+; WIRE_1_MASTER:U5|DS18xx:U1|is_copy_to_EPROM[10]          ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|is_th_tl_config[10]           ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|write_command[0]              ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|ds_data_bus~reg0              ; Stuck at GND due to stuck port data_in                      ;
+; WIRE_1_MASTER:U5|DS18xx:U1|write_command[4]              ; Merged with WIRE_1_MASTER:U5|DS18xx:U1|write_command[6]     ;
+; Total Number of Removed Registers = 123                  ;                                                             ;
++----------------------------------------------------------+-------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                               ;
++-------------------------------------------------+---------------------------+---------------------------------------------+
+; Register name                                   ; Reason for Removal        ; Registers Removed due to This Register      ;
++-------------------------------------------------+---------------------------+---------------------------------------------+
+; WIRE_1_MASTER:U5|DS18xx:U1|insert_in_sensor[15] ; Stuck at GND              ; WIRE_1_MASTER:U5|DS18xx:U1|ds_data_bus~reg0 ;
+;                                                 ; due to stuck port data_in ;                                             ;
+; WIRE_1_MASTER:U5|DS18xx:U1|is_copy_to_EPROM[10] ; Stuck at GND              ; WIRE_1_MASTER:U5|DS18xx:U1|write_command[0] ;
+;                                                 ; due to stuck port data_in ;                                             ;
++-------------------------------------------------+---------------------------+---------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 436   ;
+; Number of registers using Synchronous Clear  ; 99    ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 5     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 264   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; configuration_fsm:U7|enable             ; 46      ;
+; on_off_ds18xx:U8|measure_period_int[0]  ; 4       ;
+; on_off_ds18xx:U8|measure_period_int[31] ; 4       ;
+; Total number of inverted registers = 3  ;         ;
++-----------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |TEST|configuration_fsm:U7|int[2]                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |TEST|configuration_fsm:U7|preciznost[25]           ;
+; 3:1                ; 26 bits   ; 52 LEs        ; 0 LEs                ; 52 LEs                 ; Yes        ; |TEST|reset_module:U6|counter[23]                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |TEST|reset_module:U6|tik[3]                        ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|read_bit_flag[1]   ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 7 LEs                ; 14 LEs                 ; Yes        ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|bit_cnt[0]         ;
+; 5:1                ; 72 bits   ; 216 LEs       ; 72 LEs               ; 144 LEs                ; Yes        ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|dataOut[23]        ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |TEST|configuration_fsm:U7|output_pom[7]            ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|write_low_flag[0]  ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|write_high_flag[1] ;
+; 12:1               ; 6 bits    ; 48 LEs        ; 30 LEs               ; 18 LEs                 ; Yes        ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|write_command[2]   ;
+; 14:1               ; 7 bits    ; 63 LEs        ; 42 LEs               ; 21 LEs                 ; Yes        ; |TEST|configuration_fsm:U7|output_pom[3]            ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 36 LEs               ; 4 LEs                  ; Yes        ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|flag[2]            ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |TEST|configuration_fsm:U7|state_next               ;
+; 9:1                ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |TEST|mux:U9|X2[4]                                  ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |TEST|config_7s:U10|Mux9                            ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; No         ; |TEST|config_7s:U10|Mux12                           ;
+; 27:1               ; 3 bits    ; 54 LEs        ; 36 LEs               ; 18 LEs                 ; No         ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|state              ;
+; 31:1               ; 2 bits    ; 40 LEs        ; 24 LEs               ; 16 LEs                 ; No         ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|state              ;
+; 29:1               ; 2 bits    ; 38 LEs        ; 24 LEs               ; 14 LEs                 ; No         ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|state              ;
+; 29:1               ; 2 bits    ; 38 LEs        ; 24 LEs               ; 14 LEs                 ; No         ; |TEST|WIRE_1_MASTER:U5|DS18xx:U1|state              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u6" ;
++-------+-------+----------+--------------------------------+
+; Port  ; Type  ; Severity ; Details                        ;
++-------+-------+----------+--------------------------------+
+; input ; Input ; Info     ; Stuck at VCC                   ;
++-------+-------+----------+--------------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u5" ;
++-------+-------+----------+--------------------------------+
+; Port  ; Type  ; Severity ; Details                        ;
++-------+-------+----------+--------------------------------+
+; input ; Input ; Info     ; Stuck at VCC                   ;
++-------+-------+----------+--------------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u4" ;
++-------+-------+----------+--------------------------------+
+; Port  ; Type  ; Severity ; Details                        ;
++-------+-------+----------+--------------------------------+
+; input ; Input ; Info     ; Stuck at VCC                   ;
++-------+-------+----------+--------------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "config_7s:U10|bcd7_decoder:u3" ;
++----------+-------+----------+-----------------------------+
+; Port     ; Type  ; Severity ; Details                     ;
++----------+-------+----------+-----------------------------+
+; input[3] ; Input ; Info     ; Stuck at VCC                ;
++----------+-------+----------+-----------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "data_conv:U4|bcd_decoder:u6" ;
++----------+-------+----------+---------------------------+
+; Port     ; Type  ; Severity ; Details                   ;
++----------+-------+----------+---------------------------+
+; input[3] ; Input ; Info     ; Stuck at GND              ;
+; input[1] ; Input ; Info     ; Stuck at GND              ;
++----------+-------+----------+---------------------------+
+
+
++---------------------------------------------------------+
+; Port Connectivity Checks: "data_conv:U4|bcd_decoder:u5" ;
++----------+-------+----------+---------------------------+
+; Port     ; Type  ; Severity ; Details                   ;
++----------+-------+----------+---------------------------+
+; input[3] ; Input ; Info     ; Stuck at GND              ;
++----------+-------+----------+---------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "WIRE_1_MASTER:U5|CRC:U3"                                                                 ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; datavalid ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "WIRE_1_MASTER:U5|DS18xx:U1"                                                                ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; config_data ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reset_module:U6"                                                                                          ;
++-------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                                                  ;
++-------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; dioda ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 436                         ;
+;     CLR               ; 5                           ;
+;     ENA               ; 218                         ;
+;     ENA SCLR          ; 46                          ;
+;     SCLR              ; 53                          ;
+;     SLD               ; 1                           ;
+;     plain             ; 113                         ;
+; arriav_io_obuf        ; 1                           ;
+; arriav_lcell_comb     ; 914                         ;
+;     arith             ; 266                         ;
+;         0 data inputs ; 48                          ;
+;         1 data inputs ; 155                         ;
+;         2 data inputs ; 1                           ;
+;         4 data inputs ; 4                           ;
+;         5 data inputs ; 58                          ;
+;     extend            ; 20                          ;
+;         7 data inputs ; 20                          ;
+;     normal            ; 628                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 132                         ;
+;         3 data inputs ; 60                          ;
+;         4 data inputs ; 165                         ;
+;         5 data inputs ; 147                         ;
+;         6 data inputs ; 116                         ;
+; boundary_port         ; 52                          ;
+;                       ;                             ;
+; Max LUT depth         ; 7.00                        ;
+; Average LUT depth     ; 4.04                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:07     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
+    Info: Processing started: Fri Feb 19 12:16:35 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test -c test
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Warning (12019): Can't analyze file -- file ../../Downloads/reset_module.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/on_off_ds18xx/divider1Hz.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/DS_18xx_projekat_4_2_2021/sev_seg.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/DS_18xx_projekat_4_2_2021/double_dabble.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/DS_18xx_projekat_4_2_2021/data_conv.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/DS_18xx_projekat_4_2_2021/bcd_decoder.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/DS_18xx_projekat_4_2_2021/DS18xx.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/DS_18xx_projekat_4_2_2021/divider1MHz.vhd is missing
+Warning (12019): Can't analyze file -- file ../PDS/PDS_2020/DS_18xx_projekat_4_2_2021/CRC.vhd is missing
+Info (12021): Found 2 design units, including 1 entities, in source file wire_1_master.vhd
+    Info (12022): Found design unit 1: WIRE_1_MASTER-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/WIRE_1_MASTER.vhd Line: 16
+    Info (12023): Found entity 1: WIRE_1_MASTER File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/WIRE_1_MASTER.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file test.vhd
+    Info (12022): Found design unit 1: TEST-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 26
+    Info (12023): Found entity 1: TEST File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file on_off_ds18xx.vhd
+    Info (12022): Found design unit 1: on_off_ds18xx-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/on_off_ds18xx.vhd Line: 18
+    Info (12023): Found entity 1: on_off_ds18xx File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/on_off_ds18xx.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file config_7s.vhd
+    Info (12022): Found design unit 1: config_7s-comp_arch File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/config_7s.vhd Line: 23
+    Info (12023): Found entity 1: config_7s File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/config_7s.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file doublee_dabble.vhd
+    Info (12022): Found design unit 1: doublee_dabble-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/doublee_dabble.vhd Line: 15
+    Info (12023): Found entity 1: doublee_dabble File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/doublee_dabble.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file bcd7_decoder.vhd
+    Info (12022): Found design unit 1: bcd7_decoder-bcd7_arch File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/bcd7_decoder.vhd Line: 13
+    Info (12023): Found entity 1: bcd7_decoder File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/bcd7_decoder.vhd Line: 4
+Info (12127): Elaborating entity "test" for the top level hierarchy
+Warning (10873): Using initial value X (don't care) for net "LEDR[8]" at test.vhd(20) File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 20
+Warning (12125): Using design file reset_module.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: reset_module-reset_module_arch File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/reset_module.vhd Line: 22
+    Info (12023): Found entity 1: reset_module File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/reset_module.vhd Line: 5
+Info (12128): Elaborating entity "reset_module" for hierarchy "reset_module:U6" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 164
+Info (12128): Elaborating entity "on_off_ds18xx" for hierarchy "on_off_ds18xx:U8" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 177
+Warning (12125): Using design file divider1hz.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: divider1Hz-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/divider1hz.vhd Line: 11
+    Info (12023): Found entity 1: divider1Hz File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/divider1hz.vhd Line: 5
+Info (12128): Elaborating entity "divider1Hz" for hierarchy "on_off_ds18xx:U8|divider1Hz:U2" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/on_off_ds18xx.vhd Line: 37
+Warning (12125): Using design file configuration_fsm.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: configuration_fsm-configuration_fsm_arch File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 24
+    Info (12023): Found entity 1: configuration_fsm File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 5
+Info (12128): Elaborating entity "configuration_fsm" for hierarchy "configuration_fsm:U7" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 187
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(117): signal "output_pom" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 117
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(118): signal "power_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 118
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(119): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 119
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(120): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 120
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(121): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 121
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(122): signal "enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 122
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(123): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 123
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(128): signal "ed_down_mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 128
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(136): signal "output_pom" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 136
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(137): signal "power_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 137
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(138): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 138
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(139): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 139
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(140): signal "enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 140
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(141): signal "ed_up_next" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 141
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(141): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 141
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(145): signal "ed_up_next" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 145
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(145): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 145
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(149): signal "ed_set" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 149
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(150): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 150
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(152): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 152
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(153): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 153
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(156): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 156
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(157): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 157
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(160): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 160
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(165): signal "enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 165
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(166): signal "power_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 166
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(167): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 167
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(168): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 168
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(169): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 169
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(170): signal "ed_up_next" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 170
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(170): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 170
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(171): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 171
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(173): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 173
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(174): signal "ed_down_mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 174
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(174): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 174
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(175): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 175
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(177): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 177
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(178): signal "ed_set" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 178
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(181): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 181
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(184): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 184
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(189): signal "enable" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 189
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(190): signal "power_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 190
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(191): signal "int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 191
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(192): signal "param" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 192
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(193): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 193
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(194): signal "ed_up_next" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 194
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(194): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 194
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(195): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 195
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(197): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 197
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(198): signal "ed_down_mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 198
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(198): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 198
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(199): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 199
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(201): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 201
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(202): signal "ed_set" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 202
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(205): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 205
+Warning (10492): VHDL Process Statement warning at configuration_fsm.vhd(209): signal "preciznost" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/configuration_fsm.vhd Line: 209
+Info (12128): Elaborating entity "WIRE_1_MASTER" for hierarchy "WIRE_1_MASTER:U5" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 203
+Warning (10036): Verilog HDL or VHDL warning at WIRE_1_MASTER.vhd(54): object "REQUEST" assigned a value but never read File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/WIRE_1_MASTER.vhd Line: 54
+Warning (12125): Using design file ds18xx.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: DS18xx-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/ds18xx.vhd Line: 19
+    Info (12023): Found entity 1: DS18xx File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/ds18xx.vhd Line: 5
+Info (12128): Elaborating entity "DS18xx" for hierarchy "WIRE_1_MASTER:U5|DS18xx:U1" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/WIRE_1_MASTER.vhd Line: 61
+Warning (10492): VHDL Process Statement warning at ds18xx.vhd(69): signal "precision_input" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/ds18xx.vhd Line: 69
+Warning (10873): Using initial value X (don't care) for net "config_data" at ds18xx.vhd(13) File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/ds18xx.vhd Line: 13
+Warning (12125): Using design file divider1mhz.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: divider1MHz-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/divider1mhz.vhd Line: 11
+    Info (12023): Found entity 1: divider1MHz File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/divider1mhz.vhd Line: 5
+Info (12128): Elaborating entity "divider1MHz" for hierarchy "WIRE_1_MASTER:U5|divider1MHz:U2" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/WIRE_1_MASTER.vhd Line: 71
+Warning (12125): Using design file crc.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: CRC-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/crc.vhd Line: 17
+    Info (12023): Found entity 1: CRC File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/crc.vhd Line: 6
+Info (12128): Elaborating entity "CRC" for hierarchy "WIRE_1_MASTER:U5|CRC:U3" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/WIRE_1_MASTER.vhd Line: 76
+Warning (10541): VHDL Signal Declaration warning at crc.vhd(26): used implicit default value for signal "data_out_old" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/crc.vhd Line: 26
+Warning (12125): Using design file data_conv.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: data_conv-comp_arch File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/data_conv.vhd Line: 24
+    Info (12023): Found entity 1: data_conv File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/data_conv.vhd Line: 6
+Info (12128): Elaborating entity "data_conv" for hierarchy "data_conv:U4" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 211
+Warning (12125): Using design file double_dabble.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: double_dabble-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/double_dabble.vhd Line: 15
+    Info (12023): Found entity 1: double_dabble File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/double_dabble.vhd Line: 6
+Info (12128): Elaborating entity "double_dabble" for hierarchy "data_conv:U4|double_dabble:d3" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/data_conv.vhd Line: 73
+Warning (12125): Using design file bcd_decoder.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: bcd_decoder-bcd_arch File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/bcd_decoder.vhd Line: 13
+    Info (12023): Found entity 1: bcd_decoder File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/bcd_decoder.vhd Line: 4
+Info (12128): Elaborating entity "bcd_decoder" for hierarchy "data_conv:U4|bcd_decoder:u1" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/data_conv.vhd Line: 95
+Info (12128): Elaborating entity "config_7s" for hierarchy "config_7s:U10" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 222
+Info (12128): Elaborating entity "doublee_dabble" for hierarchy "config_7s:U10|doublee_dabble:d3" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/config_7s.vhd Line: 57
+Info (12128): Elaborating entity "bcd7_decoder" for hierarchy "config_7s:U10|bcd7_decoder:u1" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/config_7s.vhd Line: 78
+Warning (12090): Entity "mux" obtained from "mux.vhd" instead of from Quartus Prime megafunction library File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/mux.vhd Line: 4
+Warning (12125): Using design file mux.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info (12022): Found design unit 1: mux-Behavioral File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/mux.vhd Line: 31
+    Info (12023): Found entity 1: mux File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/mux.vhd Line: 4
+Info (12128): Elaborating entity "mux" for hierarchy "mux:U9" File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 232
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/maja/Desktop/PDS-projekat/Projekat/Projekat/Projekat/test.vhd Line: 20
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 4 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 995 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 46 output pins
+    Info (21060): Implemented 1 bidirectional pins
+    Info (21061): Implemented 943 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 85 warnings
+    Info: Peak virtual memory: 4886 megabytes
+    Info: Processing ended: Fri Feb 19 12:17:15 2021
+    Info: Elapsed time: 00:00:40
+    Info: Total CPU time (on all processors): 00:00:52
+
+

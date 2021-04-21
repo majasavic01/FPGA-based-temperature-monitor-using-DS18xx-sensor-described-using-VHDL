@@ -1,0 +1,92 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.ALL;
+use ieee.std_logic_unsigned.ALL;
+
+entity config_7s is
+	port
+	(
+		input	: in  std_logic_vector(9 downto 0);
+		output0	: out std_logic_vector(6 downto 0);
+		output1  : out std_logic_vector(6 downto 0);
+		output2  : out std_logic_vector(6 downto 0);
+		output3  : out std_logic_vector(6 downto 0);
+		output4  : out std_logic_vector(6 downto 0);
+		output5  : out std_logic_vector(6 downto 0)
+		
+	);
+end config_7s;
+
+
+
+
+architecture comp_arch of config_7s is
+
+	component bcd_decoder
+		port
+		(
+			input : in std_logic_vector(3 downto 0);
+			output : out std_logic_vector(6 downto 0)
+
+		);
+	end component;
+	
+	component double_dabble is
+   port ( input : in  std_logic_vector (6 downto 0);
+           ones : out  std_logic_vector (3 downto 0);
+           tens : out  std_logic_vector (3 downto 0)
+          );
+	end component;	
+	
+	signal s1:   std_logic_vector (3 downto 0);
+	signal s2:   std_logic_vector (3 downto 0);
+	signal s3:   std_logic_vector (3 downto 0);
+	signal s4:   std_logic_vector (3 downto 0);
+	signal s5:   std_logic_vector (3 downto 0);
+	signal s6:   std_logic_vector (3 downto 0);
+begin
+	
+	
+	with input(9 downto 7) select
+	s3 <= "1110" when "000",--'e'- idle
+			"1011" when "100",--'i'
+			"1100" when "011",--'p'
+			"1101" when "010",--'c'
+			"1111" when others;
+	
+	d3: double_dabble
+		port map(input => input(6 downto 0), ones => s1, tens => s2);
+			
+	 
+	 with input(6 downto 0) select
+	 s6 <= "1100" when "1100100",--'p'
+			 "1011" when "1100101",--'i'
+			 s1 when others;
+	 
+	 with s3 select
+	 s5 <= "1111" when "1101",--'c'
+	       "1111" when "1110",--'e' 
+			 "1111" when "1111",
+			 s2 when others;	
+	 
+	 with s3 select
+	 s4 <= s6 when "1101",--'c'
+			 "1111" when "1111",
+			 "1111" when "1110",
+			 s1 when others;	
+	
+		u1: bcd_decoder
+		port map(input => s4, output => output0);
+	   u2: bcd_decoder
+		port map(input => s5, output => output1);
+     	u3: bcd_decoder
+		port map(input => s3, output => output2);
+	   u4: bcd_decoder
+		port map(input =>"1111", output => output3);            
+		u5: bcd_decoder
+		port map(input => "1111", output => output4);
+	   u6: bcd_decoder
+		port map(input => "1111", output => output5);
+	 
+end comp_arch;		
+		

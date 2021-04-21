@@ -1,0 +1,28 @@
+
+State Machine - |TEST|WIRE_1_MASTER:U5|CRC:U3|crc_state
+Name crc_state.CRC_CHECK crc_state.CRC_CALC crc_state.IDLE 
+crc_state.IDLE 0 0 0 
+crc_state.CRC_CALC 0 1 1 
+crc_state.CRC_CHECK 1 0 1 
+
+State Machine - |TEST|WIRE_1_MASTER:U5|DS18xx:U1|state
+Name state.WRITE_LOW_TH_TL_CONFIG state.WRITE_HIGH_TH_TL_CONFIG state.WRITE_TH_TL_CONFIG state.READ_BIT state.GET_DATA state.WRITE_HIGH state.WRITE_LOW state.WRITE_BYTE state.SEND state.PRESENCE state.WAIT_CONVERSION_TIME state.INITIALIZATION_SEQUENCE 
+state.INITIALIZATION_SEQUENCE 0 0 0 0 0 0 0 0 0 0 0 0 
+state.WAIT_CONVERSION_TIME 0 0 0 0 0 0 0 0 0 0 1 1 
+state.PRESENCE 0 0 0 0 0 0 0 0 0 1 0 1 
+state.SEND 0 0 0 0 0 0 0 0 1 0 0 1 
+state.WRITE_BYTE 0 0 0 0 0 0 0 1 0 0 0 1 
+state.WRITE_LOW 0 0 0 0 0 0 1 0 0 0 0 1 
+state.WRITE_HIGH 0 0 0 0 0 1 0 0 0 0 0 1 
+state.GET_DATA 0 0 0 0 1 0 0 0 0 0 0 1 
+state.READ_BIT 0 0 0 1 0 0 0 0 0 0 0 1 
+state.WRITE_TH_TL_CONFIG 0 0 1 0 0 0 0 0 0 0 0 1 
+state.WRITE_HIGH_TH_TL_CONFIG 0 1 0 0 0 0 0 0 0 0 0 1 
+state.WRITE_LOW_TH_TL_CONFIG 1 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |TEST|configuration_fsm:U7|state_out
+Name state_out.prec_setup state_out.int_setup state_out.config state_out.idle 
+state_out.idle 0 0 0 0 
+state_out.config 0 0 1 1 
+state_out.int_setup 0 1 0 1 
+state_out.prec_setup 1 0 0 1 
